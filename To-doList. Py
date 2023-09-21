@@ -1,0 +1,70 @@
+class TodoList:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, task):
+        self.tasks.append(task)
+        print(f"Task '{task}' added Successfully.")
+
+    def view_tasks(self):
+        if not self.tasks:
+            print("No tasks in the list.")
+        else:
+            print("List of Tasks:")
+            for i, task in enumerate(self.tasks, 1):
+                print(f"{i}. {task}")
+
+    def update_task(self,old_task, new_task):
+        if old_task in self.tasks:
+            index = self.tasks.index(old_task)
+            self.tasks[index] = new_task
+            print(f"Task '{old_task}' updated to '{new_task}' Successfully")
+        else:
+            print(f"Task '{self}' not found in the TodoList")
+
+
+    def delete_task(self, task_index):
+        if 1 <= task_index <= len(self.tasks):
+            deleted_task = self.tasks.pop(task_index - 1)
+            print(f"Task '{deleted_task}' deleted Successfully.")
+        else:
+            print("Invalid task index. Task not deleted.")
+
+def update_task(old_task, new_task):
+    pass
+
+
+def main(new_task=None, self=None):
+    todo_list = TodoList()
+
+    while True:
+        print("\n******** To-Do-List Application ********")
+        print("1. Add Task")
+        print("2. View Tasks")
+        print("3. Delete Task")
+        print("4. Update Task")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            task = input("Enter the task: ")
+            todo_list.add_task(task)
+        elif choice == '2':
+            todo_list.view_tasks()
+        elif choice == '3':
+            task_index = int(input("Enter the task index to delete: "))
+            todo_list.delete_task(task_index)
+        elif choice == '4':
+           old_task=input("Enter the task to update: ")
+           new_task=input("Enter the new task: ")
+           todo_list.update_task(old_task,new_task)
+        elif choice == '5':
+            print("Thanks for using this Application!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
